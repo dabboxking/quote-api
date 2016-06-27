@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.util.Collection;
+import java.util.Random;
+
 /**
  * Created by reyme on 6/22/16.
  */
@@ -32,6 +35,19 @@ public class QuoteRestController {
                 .fromCurrentRequest().path("/{id}")
                 .buildAndExpand(result.getId()).toUri());
         return new ResponseEntity<>(null,httpHeaders, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    Collection<Quote> readQuotes() {
+        return this.quoteRepository.findAll();
+    }
+
+    @RequestMapping(value = "/random", method = RequestMethod.GET)
+    Quote readRandomQuote() {
+        long maxSize = quoteRepository.count();
+        Random random = new Random();
+        random.longs(maxSize);
+        return
     }
 
 }

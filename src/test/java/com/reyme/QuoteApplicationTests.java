@@ -76,6 +76,17 @@ public class QuoteApplicationTests {
 	}
 
 	@Test
+	public void testReadQuotes() throws Exception {
+		this.mockMvc.perform(get("/quotes"))
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(contentType))
+				.andExpect(jsonPath("$", hasSize(1)))
+				.andExpect(jsonPath("$[0].id", is(quote.getId().intValue())))
+				.andExpect(jsonPath("$[0].author", is("Bill Gates")))
+				.andExpect(jsonPath("$[0].content", is("I make money!")));
+	}
+
+	@Test
 	public void contextLoads() {
 	}
 

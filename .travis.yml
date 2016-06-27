@@ -4,7 +4,7 @@ jdk:
   - oraclejdk8
 
 script:
- - gradle build --stacktrace --info --no-daemon
+ - ./gradlew build --stacktrace --info --no-daemon
 
 after_success:
- - gradle jacocoTestReport coveralls
+ - ./gradlew jacocoTestReport coveralls
