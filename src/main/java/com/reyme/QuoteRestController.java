@@ -42,12 +42,4 @@ public class QuoteRestController {
         return this.quoteRepository.findAll();
     }
 
-    @RequestMapping(value = "/random", method = RequestMethod.GET)
-    Quote readRandomQuote() {
-        long maxSize = quoteRepository.count();
-        Random random = new Random();
-        random.longs(maxSize);
-        return
-    }
-
 }
