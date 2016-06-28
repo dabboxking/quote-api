@@ -1,10 +1,18 @@
 sudo: false
 language: java
 jdk:
-  - oraclejdk8
-
+- oraclejdk8
 script:
- - ./gradlew build --stacktrace --info --no-daemon
-
+- "./gradlew build --stacktrace --info --no-daemon"
 after_success:
- - ./gradlew jacocoTestReport coveralls
+  - "./gradlew jacocoTestReport coveralls"
+
+deploy:
+  edge: true
+  provider: cloudfoundry
+  username: reyme3@gmail.com
+  password:
+    secure: Ll9T3aiqbCZaUGbwXgVOgccDFnVpwMsfyqCCeIWOGPdP4Y346jHIitzrWF+FHQO6nVFK+0zSaJiTc0gjlGcJjpphjSCrxPzGvw5Et3EBFB3IJdqY7wXQxuzuZKcVvVmxuJnQAsDRUIvT5GzP7faPcz99BOSrgxzE7knGgy57ALCl+hE3ys6DplOLebOBt2BOKLhVb9Gk2vsw3iOCKmvioM/8fCofKjA3dtJX+rRBsfhFc9EkU+aoFY035yMgyKwimxrQS4bkeK7c1gFmW2YQPviMR2t+0jSKfP2n61CP4lq6ziZJlDC5EHaGth3MT2nJUQ4Yn08NYoQVtNLmcPiactHzUomq2fgcXKfoZ8q/9Lhz73Ad7spFgFI9ZtO5bMXSmpmKplDHSbo5YxObNnevkHAypnfgXA9rX58yJxoC3Pkzakj+OzZDGUD6cMM9Rp7I6o0G/BBRnjM3RTYDwZ07l3lsKON1/BkJaZpx52NovEBhtmNbfjgNPvuAyLBcO8IvDt3ZPd9naV/NnXlJ+A9qWz3kFdREx58nOtCwjZeLtovwppPBL340j84BBuVUm3zTgsTV/admGgMb7JkoUSImQyS0O4g8XzyGmtIV3s8JQBvAoqa1CWQf/jsZJXLP82Q9tLBHnA6cZDXsHt1s6g4ydfEYphrZBN2Z1/ktx/rq6ZQ=
+  api: https://api.run.pivotal.io
+  organization: reyme
+  space: development
