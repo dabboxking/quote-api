@@ -3,10 +3,8 @@ language: java
 jdk:
 - oraclejdk8
 script:
-- "cd /web"
 - "./gradlew build --stacktrace --info --no-daemon"
 after_success:
-- "cd /web"
 - "./gradlew jacocoTestReport coveralls"
 deploy:
   provider: heroku
