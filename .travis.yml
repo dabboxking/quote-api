@@ -6,7 +6,7 @@ script:
 - "cd /web"
 - "./gradlew build --stacktrace --info --no-daemon"
 after_success:
-- "cd web"
+- "cd /web"
 - "./gradlew jacocoTestReport coveralls"
 deploy:
   provider: heroku
