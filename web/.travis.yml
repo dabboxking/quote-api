@@ -1,0 +1,15 @@
+sudo: false
+language: java
+jdk:
+- oraclejdk8
+script:
+- "./gradlew build --stacktrace --info --no-daemon"
+after_success:
+- "./gradlew jacocoTestReport coveralls"
+deploy:
+  provider: heroku
+  api_key:
+    secure: lrFRP01AuDz3cQdUiZ8SBv+VigfA8NZIBoiyqPEIl8BAyt9D7HD1j6fuzaUCWhsppO4WYGGI4LRnaaCAfIS1dUdw8EYK21VaoLh57+kbA7Z99o7OUgyGAZZN+HKWmcLpnKyzSBgFSekbuwC2SXCzjuR2DDBZ4KLf97Mw8z0tTd8OtVoS8ni/QmfRiRs2GFaW8iDrdS4SaWzW27j+gbWec+MgHK48KActsWNtvEHnGhYyr2kGH+tn9fwYKrxn+Ueyvqj++CIgTwBilG0PCCbxCIyg85UkFsmS+75c1QKfX6D2ujHXJAOwjnasRo9OHsVrXUIfLDc7m2EOnJFLFt0ag0J4Atb/MXGMfv7/lHB72LBfpmvfnlGRY2aQyrCPJi0WguE6i36+c3YPQvHimMxU4YLk/QYJo95boZ875f2WwQYo8hYVG7l25MCfGAmQdWCZ+erB7Owikgt0vAiq46ZKWr6QpnsfEFCr0jBeCufEd9WrG7DiJnwCqaCzInHEUrO7EaKnTI83gj97feqKY9Xy1yQ3xGPW8Y9os32tvkrpIV66rWqIs30kNwZVRA86dMiUBCLylaKmugQPbjWPQl3puS2Z48wUJpvpWMYK+gkIERRPjUOWMs5QnydoTwSimrmKpy/uEHiV4vs/+MRjniLx6Bde2AIpH729hRHH+Fxtg1U=
+  app: quote-api
+  on:
+    repo: dabboxking/quote-api/web
