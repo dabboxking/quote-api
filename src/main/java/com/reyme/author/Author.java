@@ -81,5 +81,11 @@ public class Author {
         return this.firstName + " " + this.lastName;
     }
 
+    public boolean isNew() {
+        return this.getId() == null;
+    }
 
+    public boolean isNotNew() {
+        return !isNew();
+    }
 }
