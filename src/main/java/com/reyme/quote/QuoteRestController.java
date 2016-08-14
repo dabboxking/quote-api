@@ -3,13 +3,16 @@ package com.reyme.quote;
 import com.reyme.author.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -49,8 +52,12 @@ public class QuoteRestController {
         Random ran = new Random();
         int size = this.quoteRepository.findAll().size();
         Quote quote = this.quoteRepository.findAll().get(ran.nextInt(size));
+        List<HttpMethod> httpMethods = new ArrayList<>();
+        httpMethods.add(HttpMethod.GET);
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setAccessControlAllowOrigin("*");
+        httpHeaders.setAccessControlAllowOrigin("http://emmanueljreyme.co");
+        httpHeaders.setAccessControlMaxAge(86400); // 24 hours
+        httpHeaders.setAccessControlAllowMethods(httpMethods);
         return new ResponseEntity<>(quote,httpHeaders, HttpStatus.OK);
     }
 
