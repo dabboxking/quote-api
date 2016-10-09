@@ -1,0 +1,7 @@
+[include]
+.*/src/.*
+
+[ignore]
+.*/spec/.*
+.*/build/.*
+.*/node_modules/.*
